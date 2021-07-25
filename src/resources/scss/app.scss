@@ -1,0 +1,10 @@
+@import 'variables';
+
+.color {
+  &.color-red {
+    color: $red-color;
+  }
+  &.color-blue {
+    color: $blue-color;
+  }
+}

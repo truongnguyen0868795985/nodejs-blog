@@ -1,13 +1,25 @@
 const express = require('express')
+const morgan = require('morgan')
+const handlebars  = require('express-handlebars');
+const path = require('path')
 const app = express()
 const port = 3000
 
-app.get('/', (req, res) => {
-  let a = 1;
-  let b = 2;
-  c = a + b;
+// Set public folder
+app.use(express.static(path.join(__dirname, 'public')))
 
-  res.send('Hello World!' + c)
+// View engine - Handlebars
+app.engine('handlebars', handlebars());
+app.set('view engine', 'handlebars');
+app.set('views', path.join(__dirname, 'resources/views'))
+
+// Logger
+// app.use(morgan('combined'))
+
+// Routes
+app.get('/', (req, res) => {
+  console.log('path', path.join(__dirname, 'public'))
+  res.render('home');
 })
 
 app.listen(port, () => {
